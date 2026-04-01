@@ -2,6 +2,11 @@ import streamlit as st
 import time
 import numpy as np
 from PIL import Image
+import sys
+import os
+
+sys.path.append(os.path.abspath("modules"))
+
 
 from modules.qr_module import read_qr_safe
 from modules.color_module import detect_blood_type
