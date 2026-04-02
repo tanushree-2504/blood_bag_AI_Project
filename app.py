@@ -2,7 +2,6 @@ import streamlit as st
 import time
 import numpy as np
 from PIL import Image
-from pyzbar.pyzbar import decode
 import qrcode
 from datetime import datetime, timedelta
 
