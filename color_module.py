@@ -1,20 +1,20 @@
-import cv2
-import numpy as np
-
 def detect_blood_type(image):
+    import numpy as np
 
-    img = cv2.resize(image, (200, 200))
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    img = np.array(image)
 
-    hue = np.mean(hsv[:, :, 0])
-    saturation = np.mean(hsv[:, :, 1])
-    value = np.mean(hsv[:, :, 2])
+    # Resize manually (without cv2)
+    img = img[:200, :200]
 
-    if value > 120 and saturation > 100:
-        return "Normal"
+    # Average RGB values
+    avg_color = np.mean(img, axis=(0, 1))
 
-    elif value > 70:
-        return "Hemolyzed"
+    r, g, b = avg_color
 
+    # Detection logic
+    if r > 150 and g < 80:
+        return "Normal Blood 🟢"
+    elif r > 100:
+        return "Hemolyzed Blood 🟡"
     else:
-        return "Severely Degraded"
+        return "Severely Degraded Blood 🔴"
